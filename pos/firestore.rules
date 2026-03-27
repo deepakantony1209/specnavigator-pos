@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Orders: creation and updates for KDS flow
+    match /restaurants/{restaurantId}/orders/{orderId} {
+      allow create: if request.auth != null
+        && request.resource.data.status in ['pending', 'preparing', 'ready', 'served', 'finalised']
+        && request.resource.data.grandTotal >= 0
+        && request.resource.data.billNumber is string;
+
+      allow read: if request.auth != null;
+
+      allow update: if request.auth != null
+        && request.resource.data.status in ['pending', 'preparing', 'ready', 'served', 'finalised', 'voided', 'completed']
+        && (request.resource.data.status != 'voided' || (request.resource.data.voidReason is string && request.resource.data.voidReason.size() > 0));
+
+      // NEVER
+      allow delete: if false;
+    }
+
+    // Daily summaries: no delete ever
+    match /restaurants/{restaurantId}/dailySummaries/{day} {
+      allow read, write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    // Bill number counters: authenticated only
+    match /restaurants/{restaurantId}/counters/{day} {
+      allow read, write: if request.auth != null;
+      allow delete: if false;
+    }
+
+    // Menu
+    match /restaurants/{restaurantId}/menu/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Settings
+    match /restaurants/{restaurantId}/settings/{settingId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Cashiers
+    match /restaurants/{restaurantId}/cashiers/{cashierId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+    // Notifications for server alerts
+    match /restaurants/{restaurantId}/notifications/{id} {
+      allow read, write: if request.auth != null;
+      allow delete: if false;
+    }
+  }
+}

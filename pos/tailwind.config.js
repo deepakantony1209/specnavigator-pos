@@ -1,0 +1,61 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
+  safelist: [
+    'bg-primary', 'bg-primary-dim', 'bg-primary-container',
+    'bg-secondary', 'bg-secondary-container', 'bg-tertiary', 'bg-tertiary-container',
+    'bg-error', 'bg-error-container',
+    'bg-surface', 'bg-surface-container-lowest', 'bg-surface-container-low',
+    'bg-surface-container', 'bg-surface-container-high', 'bg-surface-container-highest', 'bg-surface-dim',
+    'text-primary', 'text-on-primary', 'text-secondary', 'text-on-secondary-container',
+    'text-tertiary', 'text-error', 'text-on-surface', 'text-on-surface-variant', 'text-outline',
+    'border-primary', 'border-error', 'border-outline-variant',
+    'text-green-600', 'text-red-600', 'bg-green-600', 'bg-red-600',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'primary':                    '#4e6073',
+        'primary-dim':                '#425467',
+        'primary-container':          '#d1e4fb',
+        'on-primary':                 '#f4f8ff',
+        'secondary':                  '#49636f',
+        'secondary-container':        '#cbe7f5',
+        'on-secondary-container':     '#3c5561',
+        'tertiary':                   '#4f6176',
+        'tertiary-container':         '#d1e4fe',
+        'error':                      '#9f403d',
+        'error-container':            '#fe8983',
+        'surface':                    '#f9f9f7',
+        'surface-container-lowest':   '#ffffff',
+        'surface-container-low':      '#f2f4f2',
+        'surface-container':          '#ebefec',
+        'surface-container-high':     '#e5e9e6',
+        'surface-container-highest':  '#dee4e0',
+        'surface-dim':                '#d4dcd8',
+        'on-surface':                 '#2d3432',
+        'on-surface-variant':         '#5a605e',
+        'outline':                    '#767c79',
+        'outline-variant':            '#adb3b0',
+      },
+      fontFamily: {
+        headline: ['Work Sans', 'sans-serif'],
+        body:     ['Inter', 'sans-serif'],
+        mono:     ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+      },
+      borderRadius: {
+        DEFAULT: '0.125rem',
+        lg:      '0.25rem',
+        xl:      '0.5rem',
+        full:    '0.75rem',
+      },
+      fontSize: {
+        '10': '0.625rem',
+      },
+    },
+  },
+  plugins: [],
+}

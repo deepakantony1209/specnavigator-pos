@@ -1,0 +1,19 @@
+# Project documentation and UI design assets
+AGENTS.md
+DESIGN.md
+PRD.md
+responsive_implementation_plan.md
+SESSION_STATUS.md
+TECHSTACK.md
+UI/
+
+# System specific files
+.DS_Store
+
+# Logs
+*.log
+
+# Sensitive environment files
+.env
+.env.*
+!.env.example
